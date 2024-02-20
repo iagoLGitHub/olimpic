@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.olimpic.controller.CompetitionCreate;
+import com.example.olimpic.controller.CompetitionList;
 import com.example.olimpic.controller.Competitor_add;
 import com.example.olimpic.databinding.ActivityMainBinding;
 
@@ -20,6 +22,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(view);
 
         activityMainBinding.btnBBoyadd.setOnClickListener(this);
+        activityMainBinding.btnBBoylist.setOnClickListener(this);
+        activityMainBinding.btnCreateCompetition.setOnClickListener(this);
 
     }
 
@@ -29,6 +33,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(view.getId()==activityMainBinding.btnBBoyadd.getId()){
             i=new Intent(this, Competitor_add.class);
+            startActivity(i);
+        }else if(view.getId()==activityMainBinding.btnBBoylist.getId()){
+            i=new Intent(this, CompetitionList.class);
+            startActivity(i);
+        }else if(view.getId()==activityMainBinding.btnCreateCompetition.getId()){
+            i=new Intent(this, CompetitionCreate.class);
             startActivity(i);
         }
     }
