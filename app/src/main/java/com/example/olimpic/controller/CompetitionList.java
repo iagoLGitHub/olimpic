@@ -29,12 +29,7 @@ public class CompetitionList extends AppCompatActivity implements View.OnClickLi
         View view=binding.getRoot();
         setContentView(view);
 
-        Competitor competitor=new Competitor("Sergio","apellido1","sinopsis","Avanzado");
-        Competitor competitor2=new Competitor("Manuel","apellido2","ElBailarin","Avanzado");
-        Competitor competitor3=new Competitor("Marta","apellido3","Furia","Avanzado");
-        competitors.add(competitor);
-        competitors.add(competitor2);
-        competitors.add(competitor3);
+
 
         binding.addCompetitor.setOnClickListener(this);
         adapterCompetitor=new AdapterCompetitor(competitors,this,this);

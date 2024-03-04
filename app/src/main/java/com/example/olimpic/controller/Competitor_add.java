@@ -57,8 +57,9 @@ public class Competitor_add extends AppCompatActivity implements View.OnClickLis
 
         if(controlEditText()){
             Competitor newCompetitor=
-                    new Competitor(binding.editName.getText().toString(),
+                    new Competitor(1,binding.editName.getText().toString(),
                                    binding.editLastName.getText().toString(),
+                                   binding.editLastName2.getText().toString(),
                                    binding.editAka.getText().toString(),
                                    (String) binding.spinner.getSelectedItem());
 
