@@ -32,15 +32,12 @@ public class AdapterJudge extends RecyclerView.Adapter<JudgeViewHolder> {
         this.sendData = sendData;
 
     }
-    public void setJudgeList(List<JudgeItem> judgeItemList) {
-        this.judges= judgeItemList;
-        notifyDataSetChanged();
-    }
 
     @NonNull
     @Override
     public JudgeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_judge, parent, false);
+
         return new JudgeViewHolder(view);
     }
 
@@ -50,13 +47,13 @@ public class AdapterJudge extends RecyclerView.Adapter<JudgeViewHolder> {
         String nameAka = judgeItem.getJudge().getAka();
         Boolean isChecked=judgeItem.isChecked();
         holder.textView.setText(nameAka);
-        System.out.println(nameAka);
-        System.out.println(isChecked);
+
         if(isChecked){
             holder.checkBox.setChecked(true);
         }else{
             holder.checkBox.setChecked(false);
         }
+
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,13 +61,16 @@ public class AdapterJudge extends RecyclerView.Adapter<JudgeViewHolder> {
                     judges.get(position).setChecked(true);
                     sendData.sendInfo(countCheckedItems());
                     sendData.sendList(judges);
+
                 }else{
                     judges.get(position).setChecked(false);
                     sendData.sendInfo(countCheckedItems());
                     sendData.sendList(judges);
+
                 }
 
             }
+
         });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +83,9 @@ public class AdapterJudge extends RecyclerView.Adapter<JudgeViewHolder> {
                     judges.get(position).setChecked(!isChecked);
                     sendData.sendInfo(countCheckedItems());
                     sendData.sendList(judges);
+
                 }
+
             }
         });
     }
@@ -91,10 +93,7 @@ public class AdapterJudge extends RecyclerView.Adapter<JudgeViewHolder> {
     public interface OnItemClickListener {
         void onItemClick(Judge judge);
 
-
     }
-
-
 
     public interface SendData {
 
@@ -102,9 +101,6 @@ public class AdapterJudge extends RecyclerView.Adapter<JudgeViewHolder> {
         void sendList(List<JudgeItem>judges);
     }
 
-    public List<JudgeItem>judgeList(){
-        return judges;
-    }
     public byte countCheckedItems() {
         byte count = 0;
         for (JudgeItem judgeItem : judges) {

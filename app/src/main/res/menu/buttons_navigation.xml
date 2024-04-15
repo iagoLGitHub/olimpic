@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navJudges"
+        android:title="judges"
+        android:icon="@drawable/judges"/>
+    <item
+        android:id="@+id/navPlaces"
+        android:title="places"
+        android:icon="@drawable/place"/>
+    <item
+        android:id="@+id/navCategories"
+        android:title="categories"
+        android:icon="@drawable/categories"/>
+</menu>

@@ -28,13 +28,14 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 
 public class JudgesFragment extends Fragment implements AdapterJudge.OnItemClickListener, AdapterJudge.SendData {
 
     FragmentJudgesBinding fragmentJudgesBinding;
-    private JudgesFragmentListener listener;
+
 
     AdapterJudge adapterJudge;
     private List<JudgeItem> listJudges;
@@ -48,8 +49,9 @@ public class JudgesFragment extends Fragment implements AdapterJudge.OnItemClick
         listJudges=new ArrayList<>();
         if(args!=null){
             listJudges=args.getParcelableArrayList("listJudges");
-        }
 
+
+        }
         adapterJudge = new AdapterJudge(listJudges, this, this);
     }
 
@@ -61,7 +63,7 @@ public class JudgesFragment extends Fragment implements AdapterJudge.OnItemClick
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
         fragmentJudgesBinding.judgesList.setLayoutManager(layoutManager);
         fragmentJudgesBinding.judgesList.setAdapter(adapterJudge);
-
+        fragmentJudgesBinding.numJudgesSelectText.setText(String.valueOf(numJudges));
 
         return rootView;
     }
@@ -79,6 +81,22 @@ public class JudgesFragment extends Fragment implements AdapterJudge.OnItemClick
 
     }
 
+    /**
+     * Retorna una lista con los jueces que tengan el valor de checked en True
+     * @return
+     */
+    public List<JudgeItem>getList(){
+        List<JudgeItem>judgeListCheckedTrue=new ArrayList<>();
+        Iterator<JudgeItem>i=listJudges.iterator();
+        while(i.hasNext()){
+            JudgeItem judgeItem=i.next();
+            if(judgeItem.isChecked()){
+                judgeListCheckedTrue.add(judgeItem);
+            }
+        }
+
+        return judgeListCheckedTrue;
+    }
     @Override
     public void onItemClick(Judge judge) {
 
@@ -89,20 +107,6 @@ public class JudgesFragment extends Fragment implements AdapterJudge.OnItemClick
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        System.out.println("se activa onstart");
 
-    }
-    public interface JudgesFragmentListener {
-        void onJudgesListReceived(List<JudgeItem> judges);
-    }
-    @Override
-    public void onStop() {
-        super.onStop();
-        this.listJudges = adapterJudge.judgeList();
-
-    }
 
 }

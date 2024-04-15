@@ -34,6 +34,7 @@ public class Competitor_add extends AppCompatActivity implements View.OnClickLis
         binding.addBtn.setOnClickListener(this);
         binding.cancelBtn.setOnClickListener(this);
 
+
     }
 
     @Override

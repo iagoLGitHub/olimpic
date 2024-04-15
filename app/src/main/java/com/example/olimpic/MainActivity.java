@@ -9,6 +9,7 @@ import android.view.View;
 import com.example.olimpic.controller.CompetitionCreate;
 import com.example.olimpic.controller.CompetitionList;
 import com.example.olimpic.controller.Competitor_add;
+import com.example.olimpic.controller.ResumeCompetition;
 import com.example.olimpic.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         activityMainBinding.btnBBoyadd.setOnClickListener(this);
         activityMainBinding.btnBBoylist.setOnClickListener(this);
         activityMainBinding.btnCreateCompetition.setOnClickListener(this);
+        activityMainBinding.btnResumeCompetition.setOnClickListener(this);
 
     }
 
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(i);
         }else if(view.getId()==activityMainBinding.btnCreateCompetition.getId()){
             i=new Intent(this, CompetitionCreate.class);
+            startActivity(i);
+        }else if(view.getId()==activityMainBinding.btnResumeCompetition.getId()){
+            i=new Intent(this, ResumeCompetition.class);
             startActivity(i);
         }
     }
