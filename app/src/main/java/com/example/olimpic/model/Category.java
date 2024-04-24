@@ -1,6 +1,8 @@
 package com.example.olimpic.model;
 
-public enum Category {
+import java.io.Serializable;
+
+public enum Category implements Serializable {
     ONEVSONEMAN(1),
     ONEVSONEWOMAN(2),
     TWOVSTWO(3),

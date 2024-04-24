@@ -28,6 +28,8 @@ public class PlaceFragment extends Fragment implements AdapterView.OnItemSelecte
     private ArrayAdapter adapter;
     private Place place;
 
+    private PlaceEvent placeEvent;
+
 
 
 
@@ -62,9 +64,10 @@ public class PlaceFragment extends Fragment implements AdapterView.OnItemSelecte
 
     public PlaceEvent getPlaceEvent() {
         String address="";
-        PlaceEvent placeEvent = null;
+        placeEvent=new PlaceEvent();
         address= String.valueOf(binding.editTextAddress.getText());
         if(!address.isEmpty()){
+
             placeEvent=new PlaceEvent(place,address);
             return placeEvent;
         }
@@ -75,7 +78,8 @@ public class PlaceFragment extends Fragment implements AdapterView.OnItemSelecte
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         place= (Place) adapterView.getSelectedItem();
-        System.out.println(place.getIdPlace());
+        String address= String.valueOf(binding.editTextAddress.getText());
+        placeEvent=new PlaceEvent(place,address);
     }
 
     @Override

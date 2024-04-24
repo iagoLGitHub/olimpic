@@ -20,6 +20,7 @@ public class JudgeItem implements Parcelable {
     }
 
     protected JudgeItem(Parcel in) {
+        judge=in.readParcelable(Judge.class.getClassLoader());
         isChecked = in.readByte() != 0;
     }
 
@@ -49,10 +50,8 @@ public class JudgeItem implements Parcelable {
 
     @Override
     public String toString() {
-        return "JudgeItem{" +
-                "judge=" + judge +
-                ", isChecked=" + isChecked +
-                '}';
+        String aka=judge.getAka();
+        return aka;
     }
 
     @Override
@@ -62,6 +61,7 @@ public class JudgeItem implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeParcelable(judge,i);
         parcel.writeByte((byte) (isChecked ? 1 : 0));
     }
 }

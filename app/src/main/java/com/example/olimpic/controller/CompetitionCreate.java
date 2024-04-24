@@ -41,9 +41,7 @@ public class CompetitionCreate extends AppCompatActivity implements NavigationBa
     private List<JudgeItem> listJudges;
     private PlaceEvent placeEvent;
 
-    private List<Category>categories;
-
-    private BottomNavigationView bottomNavigationView;
+    private List<Category> categories;
 
 
     @Override
@@ -54,7 +52,6 @@ public class CompetitionCreate extends AppCompatActivity implements NavigationBa
         setContentView(view);
         setSupportActionBar(binding.toolbar);
         binding.bottomNavigationView.setOnItemSelectedListener(this);
-;
         judgesFragment = new JudgesFragment();
         placeFragment = new PlaceFragment();
         categoryFragment = new CategoryFragment();
@@ -95,14 +92,15 @@ public class CompetitionCreate extends AppCompatActivity implements NavigationBa
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == R.id.menuCrear) {
-            if(controlEmpty()){
-                Intent i=new Intent(this, ResumeCompetition.class);
-                i.putExtra("listJudges", (CharSequence) listJudges);
-                i.putExtra("placeEvent",placeEvent);
-                i.putExtra("listCategories", (CharSequence) categories);
-
+            if (controlEmpty()) {
+                Intent i = new Intent(this, ResumeCompetition.class);
+                i.putParcelableArrayListExtra("listJudges", (ArrayList<? extends Parcelable>) listJudges);
+                i.putExtra("placeEvent", placeEvent);
+                i.putExtra("listCategories",new ArrayList<>(categories));
+                startActivity(i);
                 return true;
-            }else{
+
+            } else {
                 messageError();
             }
 
@@ -110,21 +108,20 @@ public class CompetitionCreate extends AppCompatActivity implements NavigationBa
         return super.onOptionsItemSelected(item);
     }
 
-    private boolean controlEmpty(){
-        boolean correct=false;
-            listJudges=judgesFragment.getList();
-            placeEvent=placeFragment.getPlaceEvent();
-            categories=categoryFragment.getCategoryList();
-        System.out.println(placeEvent);
-        if(!listJudges.isEmpty()&& !(placeEvent ==null) &&!categories.isEmpty()){
-            System.out.println("complete");
-            correct=true;
+    private boolean controlEmpty() {
+        boolean correct = false;
+        listJudges = judgesFragment.getList();
+        placeEvent = placeFragment.getPlaceEvent();
+        categories = categoryFragment.getCategoryList();
+        if (!listJudges.isEmpty() && (placeEvent != null) && !categories.isEmpty()) {
+
+            correct = true;
             return correct;
         }
         return correct;
     }
 
-    private void messageError(){
+    private void messageError() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Error");
         builder.setMessage("Mensaje de error detallado aquí");
@@ -144,27 +141,27 @@ public class CompetitionCreate extends AppCompatActivity implements NavigationBa
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        if(item.getItemId()==R.id.navJudges){
+        if (item.getItemId() == R.id.navJudges) {
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, judgesFragment);
             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             fragmentTransaction.commit();
             return true;
 
-        }else if(item.getItemId()==R.id.navPlaces){
+        } else if (item.getItemId() == R.id.navPlaces) {
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, placeFragment);
             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             fragmentTransaction.commit();
             return true;
 
-        }else if(item.getItemId()==R.id.navCategories){
+        } else if (item.getItemId() == R.id.navCategories) {
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, categoryFragment);
             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             fragmentTransaction.commit();
             return true;
-        }else{
+        } else {
 
             return false;
         }

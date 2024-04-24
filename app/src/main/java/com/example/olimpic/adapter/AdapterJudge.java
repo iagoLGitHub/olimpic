@@ -26,6 +26,10 @@ public class AdapterJudge extends RecyclerView.Adapter<JudgeViewHolder> {
     private SendData sendData;
 
 
+    public AdapterJudge(List<JudgeItem> judges) {
+        this.judges = judges;
+    }
+
     public AdapterJudge(List<JudgeItem> judges, OnItemClickListener onItemClickListener, SendData sendData) {
         this.judges = judges;
         this.listener = onItemClickListener;

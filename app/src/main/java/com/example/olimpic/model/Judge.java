@@ -94,14 +94,7 @@ public class Judge implements Parcelable {
 
     @Override
     public String toString() {
-        return "Judge{" +
-                "idJudge=" + idJudge +
-                ", name='" + name + '\'' +
-                ", lastName1='" + lastName1 + '\'' +
-                ", lastName2='" + lastName2 + '\'' +
-                ", dni='" + dni + '\'' +
-                ", aka='" + aka + '\'' +
-                '}';
+        return  aka;
     }
 
     @Override

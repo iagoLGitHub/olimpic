@@ -11,7 +11,8 @@ public class PlaceEvent implements Parcelable {
     private Place place;
     private String address;
 
-
+    public PlaceEvent() {
+    }
 
     public PlaceEvent(Place place, String address) {
         this.place = place;
@@ -33,6 +34,7 @@ public class PlaceEvent implements Parcelable {
     }
 
     protected PlaceEvent(Parcel in) {
+         place = in.readParcelable(Place.class.getClassLoader());
         address = in.readString();
     }
 
@@ -79,6 +81,8 @@ public class PlaceEvent implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
+
+        parcel.writeParcelable(place, i);
         parcel.writeString(address);
     }
 }
