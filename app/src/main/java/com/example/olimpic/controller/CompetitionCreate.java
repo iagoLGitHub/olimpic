@@ -1,6 +1,7 @@
 package com.example.olimpic.controller;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -50,7 +51,7 @@ public class CompetitionCreate extends AppCompatActivity implements NavigationBa
         binding = ActivityCompetitionCreateBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        setSupportActionBar(binding.toolbar);
+
         binding.bottomNavigationView.setOnItemSelectedListener(this);
         judgesFragment = new JudgesFragment();
         placeFragment = new PlaceFragment();
@@ -73,12 +74,7 @@ public class CompetitionCreate extends AppCompatActivity implements NavigationBa
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList("listJudges", (ArrayList<? extends Parcelable>) listJudges);
         judgesFragment.setArguments(bundle);
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container, placeFragment);
-        fragmentTransaction.add(R.id.fragment_container, categoryFragment);
-        fragmentTransaction.add(R.id.fragment_container, judgesFragment);
-
-        fragmentTransaction.commit();
+        initFragments();
 
     }
 
@@ -138,6 +134,16 @@ public class CompetitionCreate extends AppCompatActivity implements NavigationBa
         alertDialog.show();
     }
 
+    private void initFragments(){
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.fragment_container, placeFragment);
+        fragmentTransaction.add(R.id.fragment_container, categoryFragment);
+        fragmentTransaction.add(R.id.fragment_container, judgesFragment);
+        fragmentTransaction.commit();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container,judgesFragment);
+        fragmentTransaction.commit();
+    }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 

@@ -101,9 +101,7 @@ public class ResumeCompetition extends AppCompatActivity implements View.OnClick
              * Save in bbdd
              */
         }else if(view.getId()==binding.btnCancel.getId()){
-            /**
-             * back
-             */
+            onBackPressed();
         }
     }
 }
