@@ -6,14 +6,29 @@ public class Competitor {
     private String name;
     private String lastName1;
     private String lastName2;
+
+    private String dni;
     private String aka;
     private String Category;
 
-    public Competitor(int idCompetitor, String name, String lastName1, String lastName2, String aka, String category) {
+
+
+
+    public Competitor(String name, String lastName1, String lastName2, String dni, String aka, String category) {
+        this.name = name;
+        this.lastName1 = lastName1;
+        this.lastName2 = lastName2;
+        this.dni = dni;
+        this.aka = aka;
+        Category = category;
+    }
+
+    public Competitor(int idCompetitor, String name, String lastName1, String lastName2, String dni, String aka, String category) {
         this.idCompetitor = idCompetitor;
         this.name = name;
         this.lastName1 = lastName1;
         this.lastName2 = lastName2;
+        this.dni = dni;
         this.aka = aka;
         Category = category;
     }
@@ -44,6 +59,14 @@ public class Competitor {
 
     public String getLastName2() {
         return lastName2;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public void setLastName2(String lastName2) {
