@@ -105,6 +105,8 @@ public class AdapterJudge extends RecyclerView.Adapter<JudgeViewHolder> {
         void sendList(List<JudgeItem>judges);
     }
 
+
+
     public byte countCheckedItems() {
         byte count = 0;
         for (JudgeItem judgeItem : judges) {

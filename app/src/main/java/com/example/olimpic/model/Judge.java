@@ -4,6 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import java.util.Objects;
 
 public class Judge implements Parcelable {
 
@@ -14,6 +17,15 @@ public class Judge implements Parcelable {
     private String dni;
     private String aka;
 
+
+    public Judge(String name, String lastName1, String lastName2, String dni, String aka) {
+        this.name = name;
+        this.lastName1 = lastName1;
+        this.lastName2 = lastName2;
+        this.dni = dni;
+        this.aka = aka;
+    }
+
     public Judge(int idJudge, String name, String lastName1, String lastName2, String dni, String aka) {
         this.idJudge = idJudge;
         this.name = name;
@@ -22,6 +34,9 @@ public class Judge implements Parcelable {
         this.dni = dni;
         this.aka = aka;
     }
+
+
+
 
     protected Judge(Parcel in) {
         idJudge = in.readInt();
@@ -112,5 +127,19 @@ public class Judge implements Parcelable {
         dest.writeString(aka);
     }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        Judge that = (Judge) obj;
+        return  Objects.equals(name, that.name) &&
+                Objects.equals(lastName1, that.lastName1) &&
+                Objects.equals(lastName2, that.lastName2) &&
+                Objects.equals(dni, that.dni) &&
+                Objects.equals(aka, that.aka);
+
+    }
 }

@@ -7,30 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".controller.GeneralOptions">
 
-    <ImageView
-        android:id="@+id/placeListBtn"
-        android:layout_width="145dp"
-        android:layout_height="109dp"
-        android:layout_marginStart="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.166"
-        app:layout_constraintStart_toEndOf="@+id/addCompetitorBtn"
-        app:layout_constraintTop_toBottomOf="@+id/competitorList"
-        app:layout_constraintVertical_bias="0.241"
-        app:srcCompat="@drawable/lugares" />
-
-    <ImageView
-        android:id="@+id/addPlaceBtn"
-        android:layout_width="145dp"
-        android:layout_height="109dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addCompetitorBtn"
-        app:layout_constraintVertical_bias="0.241"
-        app:srcCompat="@drawable/place" />
 
     <ImageView
         android:id="@+id/listJudgesBtn"
@@ -39,10 +15,10 @@
         android:layout_marginStart="44dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toEndOf="@+id/addJudgesBtn"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.079"
+        app:layout_constraintVertical_bias="0.129"
         app:srcCompat="@drawable/judges" />
 
     <ImageView
@@ -50,26 +26,25 @@
         android:layout_width="145dp"
         android:layout_height="109dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="104dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toEndOf="@+id/addCompetitorBtn"
         app:layout_constraintTop_toBottomOf="@+id/listJudgesBtn"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.175"
         app:srcCompat="@drawable/deportistas" />
 
     <ImageView
         android:id="@+id/addCompetitorBtn"
         android:layout_width="145dp"
         android:layout_height="109dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.139"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addJudgesBtn"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.089"
         app:srcCompat="@drawable/deportista" />
 
     <ImageView
@@ -78,35 +53,36 @@
         android:layout_height="109dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintHorizontal_bias="0.139"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.079"
+        app:layout_constraintVertical_bias="0.129"
         app:srcCompat="@drawable/juez" />
 
     <ImageView
         android:id="@+id/addCompetitionBtn"
         android:layout_width="145dp"
         android:layout_height="109dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintHorizontal_bias="0.139"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addPlaceBtn"
-        app:layout_constraintVertical_bias="0.422"
+        app:layout_constraintTop_toBottomOf="@+id/addCompetitorBtn"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/competition" />
 
     <ImageView
         android:id="@+id/listCompetitionBtn"
         android:layout_width="145dp"
         android:layout_height="109dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.62"
+        app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toEndOf="@+id/addCompetitionBtn"
-        app:layout_constraintTop_toBottomOf="@+id/placeListBtn"
-        app:layout_constraintVertical_bias="0.555"
+        app:layout_constraintTop_toBottomOf="@+id/competitorList"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/competiciones" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

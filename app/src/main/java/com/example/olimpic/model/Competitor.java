@@ -1,6 +1,14 @@
 package com.example.olimpic.model;
 
-public class Competitor {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import java.util.Objects;
+
+public class Competitor implements Parcelable {
 
     private int idCompetitor;
     private String name;
@@ -9,7 +17,7 @@ public class Competitor {
 
     private String dni;
     private String aka;
-    private String Category;
+    private String category;
 
 
 
@@ -20,7 +28,7 @@ public class Competitor {
         this.lastName2 = lastName2;
         this.dni = dni;
         this.aka = aka;
-        Category = category;
+        this.category = category;
     }
 
     public Competitor(int idCompetitor, String name, String lastName1, String lastName2, String dni, String aka, String category) {
@@ -30,9 +38,28 @@ public class Competitor {
         this.lastName2 = lastName2;
         this.dni = dni;
         this.aka = aka;
-        Category = category;
+        this.category = category;
     }
+    protected Competitor(Parcel in) {
+        idCompetitor = in.readInt();
+        name = in.readString();
+        lastName1 = in.readString();
+        lastName2 = in.readString();
+        dni = in.readString();
+        aka = in.readString();
+        category=in.readString();
+    }
+    public static final Creator<Competitor> CREATOR = new Creator<Competitor>() {
+        @Override
+        public Competitor createFromParcel(Parcel in) {
+            return new Competitor(in);
+        }
 
+        @Override
+        public Competitor[] newArray(int size) {
+            return new Competitor[size];
+        }
+    };
     public int getIdCompetitor() {
         return idCompetitor;
     }
@@ -82,11 +109,11 @@ public class Competitor {
     }
 
     public String getCategory() {
-        return Category;
+        return category;
     }
 
     public void setCategory(String category) {
-        Category = category;
+        category = category;
     }
 
     @Override
@@ -97,7 +124,42 @@ public class Competitor {
                 ", lastName1='" + lastName1 + '\'' +
                 ", lastName2='" + lastName2 + '\'' +
                 ", aka='" + aka + '\'' +
-                ", Category='" + Category + '\'' +
+                ", category='" + category + '\'' +
                 '}';
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idCompetitor, name, lastName1, lastName2, dni, aka, category);
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+
+        Competitor that = (Competitor) obj;
+        return  Objects.equals(name, that.name) &&
+                Objects.equals(lastName1, that.lastName1) &&
+                Objects.equals(lastName2, that.lastName2) &&
+                Objects.equals(dni, that.dni) &&
+                Objects.equals(aka, that.aka) &&
+                Objects.equals(category, that.category);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeInt(idCompetitor);
+        parcel.writeString(name);
+        parcel.writeString(lastName1);
+        parcel.writeString(lastName2);
+        parcel.writeString(dni);
+        parcel.writeString(aka);
+        parcel.writeString(category);
+    }
+
+
 }
