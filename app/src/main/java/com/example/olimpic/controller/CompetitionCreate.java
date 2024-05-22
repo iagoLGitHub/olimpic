@@ -109,7 +109,10 @@ public class CompetitionCreate extends AppCompatActivity implements NavigationBa
         listJudges = judgesFragment.getList();
         placeEvent = placeFragment.getPlaceEvent();
         categories = categoryFragment.getCategoryList();
-        if (!listJudges.isEmpty() && (placeEvent != null) && !categories.isEmpty()) {
+        if (!listJudges.isEmpty() &&
+                (placeEvent != null)&&
+                (placeEvent.getPlace()!=null) &&
+                !categories.isEmpty()) {
 
             correct = true;
             return correct;

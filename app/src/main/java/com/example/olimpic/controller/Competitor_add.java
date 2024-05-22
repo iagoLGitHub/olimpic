@@ -30,6 +30,7 @@ public class Competitor_add extends AppCompatActivity implements View.OnClickLis
     Competitor competitor;
     List<String> categorias;
     ArrayAdapter<String> adapter;
+    boolean isEdit=false;
 
 
     @Override
@@ -126,28 +127,40 @@ public class Competitor_add extends AppCompatActivity implements View.OnClickLis
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == R.id.menuEditar) {
-            item.setVisible(true);
             editOn();
+            isEdit=true;
+            item.setVisible(false);
+            invalidateOptionsMenu();
         }
+        if(item.getItemId()==R.id.menuDelete){
+            showAlertDeleteDialog();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
 
+        super.onPrepareOptionsMenu(menu);
+        System.out.println("pasa por aqui");
         getMenuInflater().inflate(R.menu.menu_edit, menu);
-        MenuItem item = menu.findItem(R.id.menuEditar);
+        MenuItem itemEdit = menu.findItem(R.id.menuEditar);
+        MenuItem itemDelete=menu.findItem(R.id.menuDelete);
         if (competitor == null) {
-            item.setVisible(false);
-
+            itemEdit.setVisible(false);
+            itemDelete.setVisible(false);
         } else {
-            item.setVisible(true);
-
+            if (isEdit) {
+                itemEdit.setVisible(false);
+                itemDelete.setVisible(false);
+            } else {
+                itemEdit.setVisible(true);
+                itemDelete.setVisible(true);
+            }
         }
-        return true;
-
+        return super.onPrepareOptionsMenu(menu);
     }
-
     /**
      * Si Competitor no tiene id, crea el competidor, si tiene Id lo edita queda implementar bbdd
      *
@@ -158,23 +171,30 @@ public class Competitor_add extends AppCompatActivity implements View.OnClickLis
         if (controlEditText()&&competitor!=null) {
             Competitor newCompetitor =
                     new Competitor(binding.editName.getText().toString(),
+                            binding.editDni.getText().toString(),
                             binding.editLastName.getText().toString(),
                             binding.editLastName2.getText().toString(),
-                            binding.editDni.getText().toString(),
                             binding.editAka.getText().toString(),
                             (String) binding.spinner.getSelectedItem());
             if (controlIdNull()) {
                 System.out.println("nuevo competidor creado");
                 //Aqui guardado de newCompetitor
+                onBackPressed();
             } else {
                 if (competitor.equals(newCompetitor)) {
                     binding.addBtn.setVisibility(View.INVISIBLE);
                     //aqui no hace nada
+                    isEdit=false;
+                    invalidateOptionsMenu();
+                    editOff();
                     return false;
                 } else {
                     binding.addBtn.setVisibility(View.INVISIBLE);
+                    isEdit=false;
+                    invalidateOptionsMenu();
                     // aqui guardado de competidor editado
                     System.out.println("no es igual,y lo guarda");
+                    editOff();
                     return true;
                 }
             }
@@ -184,7 +204,31 @@ public class Competitor_add extends AppCompatActivity implements View.OnClickLis
         }
         return false;
     }
+    private void showAlertDeleteDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        String title = "Atención";
+        String message = "¿Estas seguro que quieres borrar el competidor?";
+        builder.setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        /**
+                         * Borrado de competidor con id
+                         */
+                        dialog.dismiss();
 
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        dialog.dismiss();
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
     private boolean controlIdNull(){
         Integer comp =null;
         boolean isNull=true;
